@@ -1,3 +1,231 @@
+
+Equity guard
+/
+Create an equityguard coming soon landing page in html
+That we can host on equityguard.co
+
+Mar 18
+
+Architected sophisticated landing page design with institutional aesthetic and animations
+Architected sophisticated landing page design with institutional aesthetic and animations
+Now let me build a striking landing page that matches EquityGuard's institutional positioning — authoritative, dark, refined.
+
+
+Assembled landing page template for EquityGuard
+Assembled landing page template for EquityGuard
+Here's your landing page — ready to drop onto equityguard.co. A few things to note:
+
+Design choices — dark institutional aesthetic with Instrument Serif headlines and IBM Plex Mono for body text. The right-side drift panel shows live-looking governance data (hedging breach, dilution warning, buyback tracking) that animates on load, giving visitors an immediate sense of what the product does without needing to explain it.
+
+To make it live, you'll want to:
+
+Wire up the email form — there's a commented-out Formspree example in the JS. Swap in your Formspree form ID, Mailchimp endpoint, or any backend you prefer.
+Add a favicon — a small square mark matching the logo would work well.
+Optional: add a robots.txt and sitemap.xml if you want search indexing from the start.
+The page is fully responsive, single-file with no dependencies beyond Google Fonts, and works as a static deploy on Cloudflare Pages, Netlify, Vercel, or plain hosting.
+
+Index
+Code · HTML 
+Mention equity plans in the copy LTI, options, Saye. Lose the reference to arc and remo make more of treasury forecasting and capital planing in the copy
+
+Mar 18
+
+Parsed editing directives for equity plan revisions
+Parsed editing directives for equity plan revisions
+Updated across the board. Here's what changed:
+
+Hero — now leads with the equity plan types (LTIs, options, SAYE) and positions EquityGuard at the intersection of plan management and treasury forecasting / capital planning.
+
+Drift panel cards — reframed from generic governance metrics to plan-specific scenarios: an LTI vesting cash forecast breach, a SAYE maturity wave hitting dilution headroom, and an options treasury reserve on track.
+
+Proposition cards — "Governance memory" now names the plan types explicitly. "Drift detection" references treasury cash flows and capital planning assumptions. The third card is now "Treasury forecasting" covering vesting schedules, option windows, and SAYE maturity waves — replacing the old RemCo/ARC decision packs.
+
+All references to ARC and RemCo are removed. Meta tags and page title updated to match.
+
+Index
+Code · HTML 
+Also say something about EBT optimisation and hedging
+
+Mar 18
+
+Weighed grid layout options for optimal item arrangement
+Weighed grid layout options for optimal item arrangement
+Now let me update one of the drift panel cards to show a hedging scenario instead of the generic options one:
+
+
+Synthesized EBT optimization and hedging strategies
+Synthesized EBT optimization and hedging strategies
+Updated. Here's what's new:
+
+Hero sub now names EBT optimisation and hedging strategy alongside the equity plan types and treasury forecasting.
+
+Two new proposition cards — "EBT optimisation" (04) covers trust funding, share balances, market-purchase timing, and funding drawdowns. "Hedging discipline" (05) covers mandate compliance, counterparty exposure, cost basis, and alignment with the vesting profile.
+
+Drift panel — the third card is now "EBT hedge coverage" showing 92% hedged against an 85% mandate minimum, tying the decorative data back to the hedging narrative.
+
+The grid flows as a 3-2 layout which keeps the visual rhythm clean at five cards.
+
+Index
+Code · HTML 
+Edit to Emphasise significant cost reduction opportunities for typical FTSE 100 and FTSE 250.  Few firms fully optimise their equity plan capital stack. Effective management of share plan related liabilities through cross book capital disciple creates significant and largely unrealised opportunities
+
+Mar 18
+
+Strategized cost-reduction messaging and refined value propositions throughout
+Strategized cost-reduction messaging and refined value propositions throughout
+Now let me add a powerful cost-thesis statement section between the hero and the propositions:
+
+
+Wove cost reduction opportunities throughout financial propositions
+Wove cost reduction opportunities throughout financial propositions
+Now update the proposition cards to emphasise cost reduction:
+
+
+Synthesized cost optimization strategies for major UK corporations
+Synthesized cost optimization strategies for major UK corporations
+Here's what changed:
+
+Headline — now leads with the cost message directly: "Your equity plans cost more than they should."
+
+Hero sub — names FTSE 100 and FTSE 250, calls out that few firms fully optimise their equity plan capital stack, and positions cross-book capital discipline as the unlock for significant, largely unrealised savings.
+
+New thesis section — an italic serif blockquote between hero and propositions that spells out the problem: siloed teams, disconnected EBT/hedging/dilution decisions, inefficiency compounding silently, savings going uncaptured.
+
+Proposition cards reframed — card 01 is now "Cross-book visibility" (the unified view that doesn't exist today). Treasury forecasting emphasises funding efficiencies and reducing total cost of delivery. EBT optimisation focuses on eliminating unnecessary capital deployment. Hedging discipline is now a "capital efficiency lever" not just compliance.
+
+Drift panel — the lead card now shows "£6.3m avoidable" cross-book leakage from EBT over-funding and hedge overlap, making the cost reduction thesis tangible at a glance.
+
+CTA note — now explicitly targets FTSE 100 and FTSE 250 teams.
+
+Index
+Code · HTML 
+what happens if someone fills in the form with an email address
+
+9:37 AM
+
+Examined form functionality and email submission behavior
+Examined form functionality and email submission behavior
+Right now, nothing beyond the visual — the form hides and shows a "Noted. We'll be in touch when early access opens" confirmation message, but the email address isn't actually sent anywhere. It's purely cosmetic.
+
+To make it work you need a backend endpoint to receive the submission. Since networking is disabled in my environment I can't set one up for you, but the simplest options are:
+
+Formspree (easiest, free tier covers early-stage) — you create a form at formspree.io, get a form ID, and I swap in a single fetch call. No server needed.
+
+Mailchimp / Buttondown / ConvertKit — if you want the emails landing in a mailing list you can manage later. Each gives you an API endpoint.
+
+Google Sheets via Apps Script — lightweight, free, emails land in a spreadsheet.
+
+Custom API — if you already have infrastructure, I just point the fetch at your endpoint.
+
+Which route do you want to go? I'll wire it in.
+
+Can you insert google sheet via app script
+
+9:38 AM
+
+Devised integration strategy connecting form submissions to Google Sheets
+Devised integration strategy connecting form submissions to Google Sheets
+Sure. There are two parts — the Apps Script you deploy on your Google Sheet, and the fetch call I wire into the landing page. Let me do both.
+
+
+Prepared to construct Google Apps Script code
+Prepared to construct Google Apps Script code
+Now let me create the Apps Script code you'll paste into Google:
+
+
+Assessed feasibility of Google Sheets insertion via App Script
+Assessed feasibility of Google Sheets insertion via App Script
+Done. Two files — the updated landing page and the Apps Script code. Here's the setup in short:
+
+Google side — create a new Sheet, add headers (Timestamp / Email / Source) in row 1, then go to Extensions → Apps Script, paste the contents of google-apps-script.js, and deploy as a web app (execute as you, access to anyone).
+
+Landing page side — copy the deployed web app URL and replace the placeholder at the top of the script block:
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
+Each submission writes a row with timestamp, email address, and "equityguard.co" as source. The form shows a "Submitting..." state while the request is in flight, and handles errors gracefully. Because it uses mode: 'no-cors', it works without any CORS configuration — the tradeoff is you can't read the response, but the write still goes through, and the UI confirms after the fetch completes.
+
+Index
+Code · HTML 
+Google apps script
+JS 
+google says
+
+9:53 AM
+
+Thinking about what Google states or claims
+Thinking about what Google states or claims
+Looks like your message got cut off — what's Google showing you? Paste the error or screenshot and I'll sort it out.
+
+google says Syntax error: SyntaxError: Unexpected end of input line: 30 file: Code.gs
+
+9:53 AM
+
+Pinpointed Unicode character causing syntax error
+Pinpointed Unicode character causing syntax error
+The → arrows in the comments are likely causing it — Apps Script's editor can choke on Unicode characters. Let me strip those out and give you a clean version.
+
+
+Identified syntax error in Google Apps Script code
+Identified syntax error in Google Apps Script code
+That should sort it — the → Unicode arrows in the comments were likely the culprit. This version uses plain > throughout. Delete everything in Code.gs, paste the new file, and save. The syntax error should be gone.
+
+Google apps script
+JS 
+i am a novice take me through this step line by line  Landing page side — copy the deployed web app URL and replace the placeholder at the top of the script block:
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
+Each submission writes a row with timestamp, email address, and "equityguard.co" as source. The form shows a "Submitting..." state while the request is in flight, and handles errors gracefully. Because it uses mode: 'no-cors', it works without any CORS configuration — the tradeoff is you can't read the response, but the write still goes through, and the UI confirms after the fetch completes.
+
+9:56 AM
+
+Orchestrated step-by-step guidance for novice integrating Apps Script URL
+Orchestrated step-by-step guidance for novice integrating Apps Script URL
+No problem. Here's exactly what to do:
+
+Step 1 — After you clicked "Deploy" in Google Apps Script, it showed you a URL that looks something like this (yours will be different):
+
+https://script.google.com/macros/s/AKfycbxE7a3Fk9jL2mNpQrStUvWxYz1234567890/exec
+
+Copy that entire URL.
+
+Step 2 — Open your index.html file in any text editor. On a Mac that's TextEdit (switch to plain text mode first) or any code editor like VS Code. On Windows, Notepad works fine.
+
+Step 3 — Use Find (Ctrl+F on Windows, Cmd+F on Mac) and search for:
+
+YOUR_SCRIPT_ID_HERE
+
+You'll find this line:
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
+Step 4 — Select the entire URL between the single quotes (everything from https through to exec) and replace it with the URL you copied in Step 1. So it becomes something like:
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxE7a3Fk9jL2mNpQrStUvWxYz1234567890/exec';
+Step 5 — Save the file.
+
+Step 6 — Test it. Open the HTML file in your browser, type an email address into the form, and click "Request access". Then check your Google Sheet — a new row should appear within a few seconds with the timestamp, email, and "equityguard.co".
+
+That's it. Nothing else needs to change. Once that one line is updated, the form is live.
+
+this is qwhat google replied https://script.google.com/macros/s/AKfycbwLiNoSu1x_zhE3XtNLJwEZh62go1oBtXtVmDXCE25DyB8WmzOxvr13COHvNKMaifc-NA/exec
+
+10:03 AM
+
+Thinking about evaluating a Google Apps Script macro URL and its purpose
+Thinking about evaluating a Google Apps Script macro URL and its purpose
+Done — your URL is now wired in. Download this updated index.html and try submitting a test email. You should see a new row appear in your Google Sheet within a few seconds.
+
+Index
+Code · HTML 
+
+
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+Index · HTML
+Copy
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +242,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   :root {
     --bg: #0a0b0d;
     --bg-elevated: #111318;
@@ -34,9 +262,9 @@
     --serif: 'Instrument Serif', Georgia, serif;
     --mono: 'IBM Plex Mono', 'SF Mono', monospace;
   }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     background: var(--bg);
     color: var(--text-primary);
@@ -46,7 +274,7 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-
+ 
   /* — Noise overlay — */
   body::before {
     content: '';
@@ -56,7 +284,7 @@
     pointer-events: none;
     z-index: 9999;
   }
-
+ 
   /* — Ambient glow — */
   .ambient {
     position: fixed;
@@ -68,7 +296,7 @@
     pointer-events: none;
     z-index: 0;
   }
-
+ 
   .ambient-2 {
     position: fixed;
     bottom: -40%;
@@ -79,35 +307,35 @@
     pointer-events: none;
     z-index: 0;
   }
-
+ 
   /* — Layout — */
   .page { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
-
+ 
   .container {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
   }
-
+ 
   /* — Header — */
   header {
     padding: 2.5rem 0;
     border-bottom: 1px solid var(--border);
     animation: fadeDown 0.8s ease both;
   }
-
+ 
   @keyframes fadeDown {
     from { opacity: 0; transform: translateY(-12px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
+ 
   .header-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
+ 
   .logo {
     display: flex;
     align-items: center;
@@ -115,7 +343,7 @@
     text-decoration: none;
     color: var(--text-primary);
   }
-
+ 
   .logo-mark {
     width: 32px;
     height: 32px;
@@ -125,7 +353,7 @@
     align-items: center;
     justify-content: center;
   }
-
+ 
   .logo-mark::after {
     content: '';
     width: 10px;
@@ -133,14 +361,14 @@
     background: var(--accent);
     opacity: 0.8;
   }
-
+ 
   .logo-text {
     font-size: 0.85rem;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-
+ 
   .header-status {
     font-size: 0.7rem;
     letter-spacing: 0.15em;
@@ -150,7 +378,7 @@
     align-items: center;
     gap: 0.6rem;
   }
-
+ 
   .status-dot {
     width: 6px;
     height: 6px;
@@ -158,12 +386,12 @@
     background: var(--accent);
     animation: pulse 2.5s ease-in-out infinite;
   }
-
+ 
   @keyframes pulse {
     0%, 100% { opacity: 0.4; }
     50% { opacity: 1; }
   }
-
+ 
   /* — Hero — */
   .hero {
     flex: 1;
@@ -171,9 +399,9 @@
     align-items: center;
     padding: 6rem 0 4rem;
   }
-
+ 
   .hero-content { max-width: 780px; }
-
+ 
   .hero-label {
     font-size: 0.65rem;
     letter-spacing: 0.25em;
@@ -185,19 +413,19 @@
     gap: 1rem;
     animation: fadeUp 0.8s 0.2s ease both;
   }
-
+ 
   .hero-label::before {
     content: '';
     width: 32px;
     height: 1px;
     background: var(--accent);
   }
-
+ 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
+ 
   .hero h1 {
     font-family: var(--serif);
     font-weight: 400;
@@ -207,12 +435,12 @@
     margin-bottom: 2rem;
     animation: fadeUp 0.8s 0.35s ease both;
   }
-
+ 
   .hero h1 em {
     font-style: italic;
     color: var(--accent);
   }
-
+ 
   .hero-sub {
     font-size: 1rem;
     color: var(--text-secondary);
@@ -221,18 +449,18 @@
     margin-bottom: 3.5rem;
     animation: fadeUp 0.8s 0.5s ease both;
   }
-
+ 
   /* — Email capture — */
   .cta-block {
     animation: fadeUp 0.8s 0.65s ease both;
   }
-
+ 
   .email-form {
     display: flex;
     gap: 0;
     max-width: 480px;
   }
-
+ 
   .email-form input[type="email"] {
     flex: 1;
     background: var(--bg-elevated);
@@ -246,15 +474,15 @@
     outline: none;
     transition: border-color 0.3s ease;
   }
-
+ 
   .email-form input[type="email"]::placeholder {
     color: var(--text-muted);
   }
-
+ 
   .email-form input[type="email"]:focus {
     border-color: var(--accent);
   }
-
+ 
   .email-form button {
     background: var(--accent);
     color: var(--bg);
@@ -269,19 +497,19 @@
     transition: all 0.3s ease;
     white-space: nowrap;
   }
-
+ 
   .email-form button:hover {
     background: #d4ae66;
     border-color: #d4ae66;
   }
-
+ 
   .cta-note {
     font-size: 0.65rem;
     color: var(--text-muted);
     margin-top: 1rem;
     letter-spacing: 0.04em;
   }
-
+ 
   /* — Drift visualisation — */
   .drift-panel {
     position: fixed;
@@ -291,7 +519,7 @@
     width: 280px;
     animation: fadeUp 1s 1s ease both;
   }
-
+ 
   .drift-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -300,7 +528,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .drift-card::before {
     content: '';
     position: absolute;
@@ -309,11 +537,11 @@
     bottom: 0;
     width: 3px;
   }
-
+ 
   .drift-card.critical::before { background: var(--critical); }
   .drift-card.warn::before { background: var(--warn); }
   .drift-card.safe::before { background: var(--safe); }
-
+ 
   .drift-card-label {
     font-size: 0.6rem;
     letter-spacing: 0.15em;
@@ -321,25 +549,25 @@
     color: var(--text-muted);
     margin-bottom: 0.75rem;
   }
-
+ 
   .drift-card-metric {
     font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 0.25rem;
     font-variant-numeric: tabular-nums;
   }
-
+ 
   .drift-card.critical .drift-card-metric { color: var(--critical); }
   .drift-card.warn .drift-card-metric { color: var(--warn); }
   .drift-card.safe .drift-card-metric { color: var(--safe); }
-
+ 
   .drift-card-detail {
     font-size: 0.65rem;
     color: var(--text-muted);
     display: flex;
     justify-content: space-between;
   }
-
+ 
   .drift-bar {
     height: 2px;
     background: var(--border);
@@ -347,7 +575,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .drift-bar-fill {
     height: 100%;
     position: absolute;
@@ -355,16 +583,16 @@
     top: 0;
     animation: barFill 2s ease-out forwards;
   }
-
+ 
   .drift-card.critical .drift-bar-fill { background: var(--critical); width: 87%; }
   .drift-card.warn .drift-bar-fill { background: var(--warn); width: 62%; }
   .drift-card.safe .drift-bar-fill { background: var(--safe); width: 92%; }
-
+ 
   @keyframes barFill {
     from { transform: scaleX(0); transform-origin: left; }
     to { transform: scaleX(1); transform-origin: left; }
   }
-
+ 
   .drift-card-tag {
     display: inline-block;
     font-size: 0.55rem;
@@ -373,31 +601,31 @@
     padding: 0.2rem 0.5rem;
     margin-top: 0.75rem;
   }
-
+ 
   .drift-card.critical .drift-card-tag { background: var(--critical-dim); color: var(--critical); }
   .drift-card.warn .drift-card-tag { background: rgba(212, 144, 58, 0.12); color: var(--warn); }
   .drift-card.safe .drift-card-tag { background: rgba(74, 158, 106, 0.1); color: var(--safe); }
-
+ 
   /* — Proposition strip — */
   .prop-strip {
     border-top: 1px solid var(--border);
     padding: 4rem 0;
     animation: fadeUp 0.8s 0.85s ease both;
   }
-
+ 
   .prop-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
   }
-
+ 
   .prop-item-number {
     font-size: 0.6rem;
     color: var(--text-muted);
     letter-spacing: 0.15em;
     margin-bottom: 1rem;
   }
-
+ 
   .prop-item h3 {
     font-family: var(--serif);
     font-weight: 400;
@@ -405,19 +633,19 @@
     margin-bottom: 0.75rem;
     color: var(--text-primary);
   }
-
+ 
   .prop-item p {
     font-size: 0.75rem;
     color: var(--text-secondary);
     line-height: 1.75;
   }
-
+ 
   /* — Footer — */
   footer {
     border-top: 1px solid var(--border);
     padding: 2.5rem 0;
   }
-
+ 
   .footer-inner {
     display: flex;
     justify-content: space-between;
@@ -426,15 +654,15 @@
     color: var(--text-muted);
     letter-spacing: 0.04em;
   }
-
+ 
   .footer-contact a {
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s;
   }
-
+ 
   .footer-contact a:hover { color: var(--accent); }
-
+ 
   /* — Success state — */
   .success-msg {
     display: none;
@@ -445,9 +673,9 @@
     color: var(--accent);
     max-width: 480px;
   }
-
+ 
   .success-msg.visible { display: block; }
-
+ 
   /* — Grid lines (decorative) — */
   .grid-lines {
     position: fixed;
@@ -455,7 +683,7 @@
     pointer-events: none;
     z-index: 0;
   }
-
+ 
   .grid-lines .v-line {
     position: absolute;
     top: 0;
@@ -464,16 +692,16 @@
     background: var(--border);
     opacity: 0.3;
   }
-
+ 
   .grid-lines .v-line:nth-child(1) { left: 8%; }
   .grid-lines .v-line:nth-child(2) { left: 65%; }
   .grid-lines .v-line:nth-child(3) { right: 8%; }
-
+ 
   /* — Responsive — */
   @media (max-width: 1200px) {
     .drift-panel { display: none; }
   }
-
+ 
   @media (max-width: 768px) {
     .hero { padding: 4rem 0 3rem; }
     .hero h1 { font-size: 2.2rem; }
@@ -484,19 +712,19 @@
     .header-status { display: none; }
     .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
   }
-
+ 
   /* — Thesis strip — */
   .thesis-strip {
     border-top: 1px solid var(--border);
     padding: 4.5rem 0;
   }
-
+ 
   .thesis-content {
     max-width: 720px;
     margin: 0 auto;
     text-align: center;
   }
-
+ 
   .thesis-rule {
     width: 40px;
     height: 1px;
@@ -504,7 +732,7 @@
     margin: 0 auto;
     opacity: 0.5;
   }
-
+ 
   .thesis-quote {
     font-family: var(--serif);
     font-size: 1.15rem;
@@ -514,14 +742,14 @@
     padding: 2.5rem 0;
     font-style: italic;
   }
-
+ 
   /* — Scroll-triggered reveals — */
   .reveal {
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-
+ 
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
@@ -529,18 +757,18 @@
 </style>
 </head>
 <body>
-
+ 
 <div class="grid-lines" aria-hidden="true">
   <div class="v-line"></div>
   <div class="v-line"></div>
   <div class="v-line"></div>
 </div>
-
+ 
 <div class="ambient" aria-hidden="true"></div>
 <div class="ambient-2" aria-hidden="true"></div>
-
+ 
 <div class="page">
-
+ 
   <!-- Header -->
   <header>
     <div class="container header-inner">
@@ -554,7 +782,7 @@
       </div>
     </div>
   </header>
-
+ 
   <!-- Hero -->
   <section class="hero">
     <div class="container">
@@ -562,7 +790,7 @@
         <div class="hero-label">Cross-book capital discipline for equity plans</div>
         <h1>Your equity plans cost<br>more than they <em>should.</em></h1>
         <p class="hero-sub">Few FTSE 100 or FTSE 250 firms fully optimise their equity plan capital stack. LTIs, options, SAYE, EBT funding, and hedging are managed in silos — creating significant, largely unrealised cost reduction opportunities. EquityGuard brings cross-book capital discipline to share plan liabilities for the first time.</p>
-
+ 
         <div class="cta-block">
           <div class="email-form" id="emailForm">
             <input type="email" id="emailInput" placeholder="your@company.com" autocomplete="email" required>
@@ -574,7 +802,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- Drift panel (decorative data) -->
   <aside class="drift-panel" aria-hidden="true">
     <div class="drift-card critical">
@@ -587,7 +815,7 @@
       <div class="drift-bar"><div class="drift-bar-fill"></div></div>
       <span class="drift-card-tag">Unrealised saving</span>
     </div>
-
+ 
     <div class="drift-card warn">
       <div class="drift-card-label">SAYE maturity wave</div>
       <div class="drift-card-metric">8.2% of 10%</div>
@@ -598,7 +826,7 @@
       <div class="drift-bar"><div class="drift-bar-fill"></div></div>
       <span class="drift-card-tag">Warning</span>
     </div>
-
+ 
     <div class="drift-card safe">
       <div class="drift-card-label">EBT hedge coverage</div>
       <div class="drift-card-metric">92% hedged</div>
@@ -610,7 +838,7 @@
       <span class="drift-card-tag">On track</span>
     </div>
   </aside>
-
+ 
   <!-- Cost thesis -->
   <section class="thesis-strip">
     <div class="container">
@@ -623,7 +851,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- Value propositions -->
   <section class="prop-strip">
     <div class="container">
@@ -656,7 +884,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- Footer -->
   <footer>
     <div class="container footer-inner">
@@ -664,9 +892,9 @@
       <span class="footer-contact"><a href="mailto:hello@equityguard.co">hello@equityguard.co</a></span>
     </div>
   </footer>
-
+ 
 </div>
-
+ 
 <script>
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
@@ -679,37 +907,53 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => observer.observe(el));
-
+ 
   // Email form
-  function handleSubmit() {
+  // ⚠️ Replace this URL with your deployed Google Apps Script web app URL
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLiNoSu1x_zhE3XtNLJwEZh62go1oBtXtVmDXCE25DyB8WmzOxvr13COHvNKMaifc-NA/exec';
+ 
+  async function handleSubmit() {
     const input = document.getElementById('emailInput');
     const form = document.getElementById('emailForm');
     const msg = document.getElementById('successMsg');
+    const btn = document.getElementById('submitBtn');
     const email = input.value.trim();
-
+ 
     if (!email || !email.includes('@') || !email.includes('.')) {
       input.style.borderColor = 'var(--critical)';
       setTimeout(() => input.style.borderColor = '', 1500);
       return;
     }
-
-    // Replace this with your form endpoint (e.g. Formspree, Mailchimp, or custom API)
-    // Example with Formspree:
-    // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ email: email })
-    // });
-
-    form.style.display = 'none';
-    msg.classList.add('visible');
+ 
+    // Disable while submitting
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    btn.style.opacity = '0.6';
+ 
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, timestamp: new Date().toISOString() })
+      });
+ 
+      form.style.display = 'none';
+      msg.classList.add('visible');
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Request access';
+      btn.style.opacity = '1';
+      input.style.borderColor = 'var(--critical)';
+      console.error('Submission error:', err);
+    }
   }
-
+ 
   // Enter key
   document.getElementById('emailInput').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') handleSubmit();
   });
-
+ 
   // Animate drift numbers
   function animateValue(el, start, end, suffix, duration) {
     const range = end - start;
@@ -724,7 +968,7 @@
     }
     requestAnimationFrame(update);
   }
-
+ 
   // Trigger drift counter animations after load
   setTimeout(() => {
     const metrics = document.querySelectorAll('.drift-card-metric');
@@ -743,6 +987,7 @@
     if (metrics[1]) animateValue(metrics[1], 0, 8.2, '% of 10%', 1600);
   }, 1200);
 </script>
-
+ 
 </body>
 </html>
+ 
