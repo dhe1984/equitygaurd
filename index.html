@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EquityGuard — Your Equity Plans Cost More Than They Should</title>
+<meta name="description" content="Few FTSE 100 or FTSE 250 firms fully optimise their equity plan capital stack. EquityGuard brings cross-book capital discipline to LTIs, options, SAYE, EBT funding, and hedging — unlocking significant cost reduction opportunities.">
+<meta property="og:title" content="EquityGuard — Coming Soon">
+<meta property="og:description" content="Your equity plans cost more than they should. Cross-book capital discipline for FTSE listed companies.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://equityguard.co">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0b0d;
+    --bg-elevated: #111318;
+    --bg-card: #161921;
+    --border: #1e2230;
+    --border-accent: #2a3040;
+    --text-primary: #e8eaf0;
+    --text-secondary: #8890a4;
+    --text-muted: #555c72;
+    --accent: #c9a45c;
+    --accent-dim: rgba(201, 164, 92, 0.12);
+    --accent-glow: rgba(201, 164, 92, 0.06);
+    --critical: #e05545;
+    --critical-dim: rgba(224, 85, 69, 0.15);
+    --warn: #d4903a;
+    --safe: #4a9e6a;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --mono: 'IBM Plex Mono', 'SF Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--mono);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* — Noise overlay — */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* — Ambient glow — */
+  .ambient {
+    position: fixed;
+    top: -30%;
+    right: -20%;
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ambient-2 {
+    position: fixed;
+    bottom: -40%;
+    left: -20%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(224, 85, 69, 0.025) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* — Layout — */
+  .page { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
+
+  .container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* — Header — */
+  header {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.8s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--accent);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-mark::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    opacity: 0.8;
+  }
+
+  .logo-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .header-status {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* — Hero — */
+  .hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 6rem 0 4rem;
+  }
+
+  .hero-content { max-width: 780px; }
+
+  .hero-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 3.5rem;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  /* — Email capture — */
+  .cta-block {
+    animation: fadeUp 0.8s 0.65s ease both;
+  }
+
+  .email-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+  }
+
+  .email-form input[type="email"] {
+    flex: 1;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-accent);
+    border-right: none;
+    padding: 0.9rem 1.2rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .email-form input[type="email"]::placeholder {
+    color: var(--text-muted);
+  }
+
+  .email-form input[type="email"]:focus {
+    border-color: var(--accent);
+  }
+
+  .email-form button {
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    padding: 0.9rem 1.8rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .email-form button:hover {
+    background: #d4ae66;
+    border-color: #d4ae66;
+  }
+
+  .cta-note {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* — Drift visualisation — */
+  .drift-panel {
+    position: fixed;
+    right: 4vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 280px;
+    animation: fadeUp 1s 1s ease both;
+  }
+
+  .drift-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .drift-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+  }
+
+  .drift-card.critical::before { background: var(--critical); }
+  .drift-card.warn::before { background: var(--warn); }
+  .drift-card.safe::before { background: var(--safe); }
+
+  .drift-card-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .drift-card-metric {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .drift-card.critical .drift-card-metric { color: var(--critical); }
+  .drift-card.warn .drift-card-metric { color: var(--warn); }
+  .drift-card.safe .drift-card-metric { color: var(--safe); }
+
+  .drift-card-detail {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .drift-bar {
+    height: 2px;
+    background: var(--border);
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .drift-bar-fill {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: barFill 2s ease-out forwards;
+  }
+
+  .drift-card.critical .drift-bar-fill { background: var(--critical); width: 87%; }
+  .drift-card.warn .drift-bar-fill { background: var(--warn); width: 62%; }
+  .drift-card.safe .drift-bar-fill { background: var(--safe); width: 92%; }
+
+  @keyframes barFill {
+    from { transform: scaleX(0); transform-origin: left; }
+    to { transform: scaleX(1); transform-origin: left; }
+  }
+
+  .drift-card-tag {
+    display: inline-block;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .drift-card.critical .drift-card-tag { background: var(--critical-dim); color: var(--critical); }
+  .drift-card.warn .drift-card-tag { background: rgba(212, 144, 58, 0.12); color: var(--warn); }
+  .drift-card.safe .drift-card-tag { background: rgba(74, 158, 106, 0.1); color: var(--safe); }
+
+  /* — Proposition strip — */
+  .prop-strip {
+    border-top: 1px solid var(--border);
+    padding: 4rem 0;
+    animation: fadeUp 0.8s 0.85s ease both;
+  }
+
+  .prop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .prop-item-number {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .prop-item h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .prop-item p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  /* — Footer — */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-contact a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-contact a:hover { color: var(--accent); }
+
+  /* — Success state — */
+  .success-msg {
+    display: none;
+    padding: 0.85rem 1.2rem;
+    background: var(--accent-dim);
+    border: 1px solid rgba(201, 164, 92, 0.25);
+    font-size: 0.75rem;
+    color: var(--accent);
+    max-width: 480px;
+  }
+
+  .success-msg.visible { display: block; }
+
+  /* — Grid lines (decorative) — */
+  .grid-lines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .grid-lines .v-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+    opacity: 0.3;
+  }
+
+  .grid-lines .v-line:nth-child(1) { left: 8%; }
+  .grid-lines .v-line:nth-child(2) { left: 65%; }
+  .grid-lines .v-line:nth-child(3) { right: 8%; }
+
+  /* — Responsive — */
+  @media (max-width: 1200px) {
+    .drift-panel { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 4rem 0 3rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .prop-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .email-form { flex-direction: column; }
+    .email-form input[type="email"] { border-right: 1px solid var(--border-accent); border-bottom: none; }
+    .email-form button { padding: 1rem; }
+    .header-status { display: none; }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* — Thesis strip — */
+  .thesis-strip {
+    border-top: 1px solid var(--border);
+    padding: 4.5rem 0;
+  }
+
+  .thesis-content {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .thesis-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 auto;
+    opacity: 0.5;
+  }
+
+  .thesis-quote {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    padding: 2.5rem 0;
+    font-style: italic;
+  }
+
+  /* — Scroll-triggered reveals — */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-lines" aria-hidden="true">
+  <div class="v-line"></div>
+  <div class="v-line"></div>
+  <div class="v-line"></div>
+</div>
+
+<div class="ambient" aria-hidden="true"></div>
+<div class="ambient-2" aria-hidden="true"></div>
+
+<div class="page">
+
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark"></div>
+        <span class="logo-text">EquityGuard</span>
+      </a>
+      <div class="header-status">
+        <span class="status-dot"></span>
+        In development
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-label">Cross-book capital discipline for equity plans</div>
+        <h1>Your equity plans cost<br>more than they <em>should.</em></h1>
+        <p class="hero-sub">Few FTSE 100 or FTSE 250 firms fully optimise their equity plan capital stack. LTIs, options, SAYE, EBT funding, and hedging are managed in silos — creating significant, largely unrealised cost reduction opportunities. EquityGuard brings cross-book capital discipline to share plan liabilities for the first time.</p>
+
+        <div class="cta-block">
+          <div class="email-form" id="emailForm">
+            <input type="email" id="emailInput" placeholder="your@company.com" autocomplete="email" required>
+            <button type="button" id="submitBtn" onclick="handleSubmit()">Request access</button>
+          </div>
+          <div class="success-msg" id="successMsg">Noted. We'll be in touch when early access opens.</div>
+          <p class="cta-note">Early access for FTSE 100 and FTSE 250 treasury and governance teams.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drift panel (decorative data) -->
+  <aside class="drift-panel" aria-hidden="true">
+    <div class="drift-card critical">
+      <div class="drift-card-label">Cross-book leakage</div>
+      <div class="drift-card-metric">£6.3m avoidable</div>
+      <div class="drift-card-detail">
+        <span>EBT over-funded</span>
+        <span>Hedge overlap</span>
+      </div>
+      <div class="drift-bar"><div class="drift-bar-fill"></div></div>
+      <span class="drift-card-tag">Unrealised saving</span>
+    </div>
+
+    <div class="drift-card warn">
+      <div class="drift-card-label">SAYE maturity wave</div>
+      <div class="drift-card-metric">8.2% of 10%</div>
+      <div class="drift-card-detail">
+        <span>Dilution limit: 10%</span>
+        <span>Projected: 8.2%</span>
+      </div>
+      <div class="drift-bar"><div class="drift-bar-fill"></div></div>
+      <span class="drift-card-tag">Warning</span>
+    </div>
+
+    <div class="drift-card safe">
+      <div class="drift-card-label">EBT hedge coverage</div>
+      <div class="drift-card-metric">92% hedged</div>
+      <div class="drift-card-detail">
+        <span>Mandate: 85% min</span>
+        <span>Current: 92%</span>
+      </div>
+      <div class="drift-bar"><div class="drift-bar-fill"></div></div>
+      <span class="drift-card-tag">On track</span>
+    </div>
+  </aside>
+
+  <!-- Cost thesis -->
+  <section class="thesis-strip">
+    <div class="container">
+      <div class="thesis-content reveal">
+        <div class="thesis-rule"></div>
+        <blockquote class="thesis-quote">
+          Most listed companies manage share plan liabilities across disconnected teams, systems, and advisors. EBT funding decisions are made without sight of hedging positions. Hedging mandates are set without reference to vesting forecasts. Dilution headroom is consumed without a unified capital view. The result is a fragmented capital stack where inefficiency compounds silently — and significant savings go uncaptured.
+        </blockquote>
+        <div class="thesis-rule"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value propositions -->
+  <section class="prop-strip">
+    <div class="container">
+      <div class="prop-grid">
+        <div class="prop-item reveal">
+          <div class="prop-item-number">01</div>
+          <h3>Cross-book visibility</h3>
+          <p>LTI grants, option exercises, SAYE maturities, EBT funding, hedging positions — unified for the first time. EquityGuard gives treasury a single capital view across every share plan liability, replacing the fragmented spreadsheets and siloed advisors that let costs compound unnoticed.</p>
+        </div>
+        <div class="prop-item reveal">
+          <div class="prop-item-number">02</div>
+          <h3>Drift detection</h3>
+          <p>Continuous monitoring compares live share price, dilution headroom, and treasury cash flows against original decision assumptions. When conditions drift, costs drift with them — EquityGuard surfaces the capital impact before it reaches the board as a surprise.</p>
+        </div>
+        <div class="prop-item reveal">
+          <div class="prop-item-number">03</div>
+          <h3>Treasury forecasting</h3>
+          <p>Forward-looking capital models across your full equity plan landscape — vesting schedules, option windows, SAYE maturity waves — so treasury can identify funding efficiencies, time market purchases, and reduce the total cost of delivering share plan commitments.</p>
+        </div>
+        <div class="prop-item reveal">
+          <div class="prop-item-number">04</div>
+          <h3>EBT optimisation</h3>
+          <p>Model trust funding requirements against plan commitments and hedging positions in real time. Identify when to fund, when to purchase, and when existing trust assets already cover upcoming vestings — eliminating unnecessary capital deployment.</p>
+        </div>
+        <div class="prop-item reveal">
+          <div class="prop-item-number">05</div>
+          <h3>Hedging discipline</h3>
+          <p>Monitor hedge coverage against live equity plan liabilities with full sight of EBT holdings. Avoid over-hedging, reduce counterparty costs, and align strategy to vesting profiles — turning a compliance exercise into a genuine capital efficiency lever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <span>&copy; 2026 EquityGuard</span>
+      <span class="footer-contact"><a href="mailto:hello@equityguard.co">hello@equityguard.co</a></span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Email form
+  function handleSubmit() {
+    const input = document.getElementById('emailInput');
+    const form = document.getElementById('emailForm');
+    const msg = document.getElementById('successMsg');
+    const email = input.value.trim();
+
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      input.style.borderColor = 'var(--critical)';
+      setTimeout(() => input.style.borderColor = '', 1500);
+      return;
+    }
+
+    // Replace this with your form endpoint (e.g. Formspree, Mailchimp, or custom API)
+    // Example with Formspree:
+    // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ email: email })
+    // });
+
+    form.style.display = 'none';
+    msg.classList.add('visible');
+  }
+
+  // Enter key
+  document.getElementById('emailInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleSubmit();
+  });
+
+  // Animate drift numbers
+  function animateValue(el, start, end, suffix, duration) {
+    const range = end - start;
+    const startTime = performance.now();
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = start + range * eased;
+      el.textContent = (current % 1 === 0 ? current.toFixed(0) : current.toFixed(1)) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  // Trigger drift counter animations after load
+  setTimeout(() => {
+    const metrics = document.querySelectorAll('.drift-card-metric');
+    if (metrics[0]) {
+      const el = metrics[0];
+      const dur = 1800;
+      const start = performance.now();
+      function upd(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = '£' + (6.3 * e).toFixed(1) + 'm avoidable';
+        if (p < 1) requestAnimationFrame(upd);
+      }
+      requestAnimationFrame(upd);
+    }
+    if (metrics[1]) animateValue(metrics[1], 0, 8.2, '% of 10%', 1600);
+  }, 1200);
+</script>
+
+</body>
+</html>
